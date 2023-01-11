@@ -1,0 +1,8 @@
+In this folder, two data files are generated for testing your toy model,
+
+1. labelled : including two parameters: radius curvature and surface energy, and the output pull-off force;
+2. unlablled: including two paramters: radius curvaature and surface energy
+
+AW2MH: you can play the dataset first with your method, and try to figure out the relation between pull-off force F in a relation with raidus curvature and surfac energy.
+
+MH2AW: I converted your dataset to a csv file, because it's easier for me to work with .csv than with .dat

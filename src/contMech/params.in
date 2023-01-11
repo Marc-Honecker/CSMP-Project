@@ -1,0 +1,60 @@
+1		# lengthX #
+2048		# nxGlobal #
+
+0		# nRelax #
+100000		# nTime #
+0.1		# dTime #
+
+1000		# freqFrame #
+
+0		# fFire #
+0		# fireRedrct #
+1		# fireIncrmt #
+1		# fireDecrmt #
+
+1.5		# dampGlobal #
+4711		# randSeed #
+
+2		# nSheet #
+1		# nInter #
+0		# nAtomL #
+
+0		# end global parameters 
+
+0	# sheet start
+4		# fRoughAdd #
+3		# fAddSWR #
+0.01		# heightSWR #
+1               # nqxAddSWR #
+1               # nqyAddSWR #
+0	# sheet end
+
+1	# sheet start
+1		# nElast #
+0.5		# stiffness0 #
+0		# fThickness0 #
+0.49		# poisson0 #
+0.159154943	# thickness0 #
+
+0.0		# pressInit #
+1		# fSteppedRamp #
+-0.0025		# zConstCOM #
+0.00005		# dzRamp #
+450		# rampRelax #
+150             # rampSteps #
+
+1		# fMassWeightg #
+1		# zeroModeMass #
+1	# sheet end
+
+0	# inter start
+0		# sheetID0 #
+1		# sheetID1 #
+
+2		# fPotential #
+7.854e-05	# surfEnerg #
+0.3		# potCurveRel #
+
+0		# fDumpGap #
+0	# inter end
+
