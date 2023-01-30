@@ -8,7 +8,7 @@ extern int iTime;
 
 // odd integer with a decent mix of zeroes and ones
 uint64_t seed = 16273530647158678139ULL;
-// odd integer closest to 2^64/((1+sqrt(5))/2); 
+// odd integer closest to 2^64/((1+sqrt(5))/2);
 // arbitrary; good mix of zeroes and ones;
 const uint64_t incr = 0x9e3779b97f4a7c15L;
 const double DOUBLE_ULP = 1.0 / (1L << 53);
@@ -55,7 +55,7 @@ void changeSeedMix64(int mySeed){
 void dumpRealCS(vector<double*> fields, vector<string> columnNames, Lint nx, Lint ny, int xStep, int yStep, const string& fileName) {
   double dx = lengthX/nx, dy = lengthY/ny;
   ofstream dumPH(fileName);
-  
+
   // create file header
   string header = (ny>nx)? "# y" : "# x";
   if (nx > ny) {
@@ -80,7 +80,7 @@ void dumpRealCS(vector<double*> fields, vector<string> columnNames, Lint nx, Lin
       for (double* field:fields) dumPH << "\t" << field[(ix%nx)*ny+iy];
       dumPH << "\n";
     }
-  } 
+  }
 
   // only plot along y
   else if (ny > nx) {
@@ -90,7 +90,7 @@ void dumpRealCS(vector<double*> fields, vector<string> columnNames, Lint nx, Lin
       for (double* field:fields) dumPH << "\t" << field[ix*ny+(iy%ny)];
       dumPH << "\n";
     }
-  } 
+  }
 
   // plot along x, y, and diagonal
   else {
@@ -104,14 +104,14 @@ void dumpRealCS(vector<double*> fields, vector<string> columnNames, Lint nx, Lin
       for (double* field:fields) dumPH << "\t" << field[(ix%nx)*ny+(ix%nx)];
       dumPH << "\n";
     }
-  } 
+  }
 
   dumPH.close();
 }
 
 
 void dumpReal(vector<double*> fields, Lint nx, Lint ny, int xStep, int yStep, const string& fileName) {
-  //change: if input/output ever becomes advanced enough to not break completely 
+  //change: if input/output ever becomes advanced enough to not break completely
   //        because of it, we should add column headers here as well.
 
   double dx = lengthX/nx, dy = lengthY/ny;
@@ -124,21 +124,21 @@ void dumpReal(vector<double*> fields, Lint nx, Lint ny, int xStep, int yStep, co
   // only plot along y
   if(nx==1) {
     for (Lint iy=0; iy<=ny; iy+=yStep) {
-      dumP << iy*dy; 
+      dumP << iy*dy;
       for (double* field:fields) dumP << "\t" << field[iy];
-      dumP << "\n"; 
+      dumP << "\n";
     }
-  } 
-  
+  }
+
   // only plot along x
   else if (ny==1) {
     for (Lint ix=0; ix<=nx; ix+=xStep) {
       dumP << ix*dx;
       for (double* field:fields) dumP << "\t" << field[ix];
-      dumP << "\n"; 
+      dumP << "\n";
     }
-  } 
-  
+  }
+
   // plot along x, y, and diagonal
   else {
     for (Lint ix=0; ix<=nx; ix+=xStep) {
@@ -147,10 +147,10 @@ void dumpReal(vector<double*> fields, Lint nx, Lint ny, int xStep, int yStep, co
         dumP << ix*dx << "\t" << iy*dy;
         for (double* field:fields) dumP << "\t" << field[k];
         dumP << "\n";
-      } 
+      }
       dumP << "\n";
     }
-  } 
+  }
 
   dumP.close();
 }
@@ -180,7 +180,7 @@ double biLinInterpol(double q11, double q12, double q21, double q22, double x1,
   return (q11*x2x*y2y + q21*xx1*y2y + q12*x2x*yy1 + q22*xx1*yy1) / (x2x1*y2y1);
 }
 
-int readReal(double* array, Lint nx, Lint ny, const string& fileName, int column){ 
+int readReal(double* array, Lint nx, Lint ny, const string& fileName, int column){
 
   ifstream configIn(fileName);
   if (!configIn.is_open()) return(0);
@@ -206,7 +206,7 @@ int readReal(double* array, Lint nx, Lint ny, const string& fileName, int column
   vector <double> arrayOld(nxOld*nyOld);
   for (Lint ixOld = 0; ixOld < nxOld; ixOld++){
     for (Lint iyOld = 0; iyOld < nyOld; iyOld++){
-      for (int i = 1; i < column; ++i) configIn >> dummy; // skip other columns 
+      for (int i = 1; i < column; ++i) configIn >> dummy; // skip other columns
       configIn >> dispZ; getline(configIn, str);
       Lint ii = ixOld*nyOld+iyOld;
       arrayOld[ii] = dispZ;
@@ -227,7 +227,7 @@ int readReal(double* array, Lint nx, Lint ny, const string& fileName, int column
         array[k] = arrayOld[kOld];
       }
     }
-  } else if ((nx>nxOld)&&(ny>nyOld)){ // 3 cases remaining 
+  } else if ((nx>nxOld)&&(ny>nyOld)){ // 3 cases remaining
     fSizeUpScale = 1;
     int scalX = nx/nxOld, scalY = ny/nyOld;
     for (Lint ix = 0; ix < nx; ix++){
@@ -350,12 +350,12 @@ void realSpaceAnalysis(double * array, vector<double> *derivs, Lint nx, Lint ny)
   (*derivs)[4] = msCurvRy;
   (*derivs)[5] = heightDiff;
 
-} 
+}
 
 
 // cannot use template for fireRedirect, as complex and real squares differ
 
-void fireRedirecT(Complex *force, Complex *rN, Complex *rC, 
+void fireRedirecT(Complex *force, Complex *rN, Complex *rC,
 		  Complex *rO, double *mass, Lint nR) {
 
   // rN = rNew, rC = rCopy (of new), rO = rOld
